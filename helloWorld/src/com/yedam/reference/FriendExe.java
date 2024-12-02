@@ -24,11 +24,11 @@ public class FriendExe {
 		
 		Friend[] myFriends = {f1,f2,f3};
 		
-//		System.out.println(myFriends[0].friendName);
-//		System.out.println(myFriends[0].friendPhone);
-//		System.out.println(myFriends[0].friendBirth);
+		System.out.println(myFriends[0].friendName);
+		System.out.println(myFriends[0].friendPhone);
+		System.out.println(myFriends[0].friendBirth);
+		
 		Scanner scn = new Scanner(System.in);
-
 		boolean run = true;
 
 		while (run) {
