@@ -59,5 +59,9 @@ public class Board {
 				+writerDate.getHours()+"시 "+writerDate.getMinutes() +"분 "+writerDate.getSeconds()+"초 ";
 		return "  "+boardNo+"  "+title+"  "+writer+"  "+ yyyymmdd;
 	}
-	
+	public String showInfo2() {
+		String yyyymmdd = writerDate.getYear()+1900 +"년 "+ (writerDate.getMonth()+1)+"월 "+writerDate.getDate()+"일 "
+				+writerDate.getHours()+"시 "+writerDate.getMinutes() +"분 "+writerDate.getSeconds()+"초 ";
+		return yyyymmdd;
+	}
 }

@@ -76,7 +76,7 @@ public class MainExe {
 		// 1추가 2목록 3수정 4삭제 9.상위 메뉴로
 		boolean run = true;
 		while (run) {
-			System.out.println("1.글등록 2.목록 3.수정 4.삭제 9.상위 메뉴로");
+			System.out.println("1.글등록 2.목록 3.수정 4.삭제 6.상세보기 9.상위 메뉴로");
 			System.out.print("선택 >>");
 			int menu = Integer.parseInt(scn.nextLine());
 
@@ -141,6 +141,12 @@ public class MainExe {
 				} else {
 					System.out.println("안댐");
 				}
+				break;
+			}
+			case 6:{
+				System.out.print("게시글 번호 >>");
+				bno = Integer.parseInt(scn.nextLine());
+				bexe.sangSeBoGi(bno);
 				break;
 			}
 			case 9: {

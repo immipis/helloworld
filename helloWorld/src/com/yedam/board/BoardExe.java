@@ -2,6 +2,8 @@ package com.yedam.board;
 
 import java.util.Date;
 
+import javax.swing.border.Border;
+
 // 등록, 목록
 
 public class BoardExe {
@@ -88,6 +90,20 @@ public class BoardExe {
 			}
 		}
 		return false;
+	}
+	public void sangSeBoGi(int bno) {
+		for (int i = 0; i < storege.length; i++) {
+			if (storege[i] != null) {
+				if(storege[i].getBoardNo() == bno) {
+					System.out.println("-------------");
+					System.out.println("글번호"+storege[i].getBoardNo()+"작성자"+storege[i].getWriter());
+					System.out.println("제목:"+storege[i].getTitle());
+					System.out.println("내용:"+storege[i].getContent());
+					System.out.println("작성일시:"+storege[i].showInfo2());
+				
+				}
+			}
+		}
 	}
 
 }
