@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class MainExe {
-	static MemberExe mexe = new MemberExe(); // 인스턴스 생성해야댐
+//	static MemberExe mexe = new MemberExe(); // 인스턴스
 	static BoardExe bexe = new BoardExe();
 	static Scanner scn = new Scanner(System.in);
 
@@ -28,7 +28,8 @@ public class MainExe {
 				System.out.print("회원 연락처>>");
 				String phone = scn.nextLine();
 
-				boolean result = mexe.addMember(new Member(id, pw, name, phone));
+				boolean result = MemberExe.addMember(new Member(id, pw, name, phone));
+				//인스턴스가 없어도 사용가능 스태틱
 
 				if (result) {
 					System.out.println("정상 등록되었습니다");
@@ -37,7 +38,7 @@ public class MainExe {
 				}
 				break;
 			case 2: {
-				Member[] list = mexe.memberList();
+				Member[] list = MemberExe.memberList();
 				for (Member member : list) {
 					if (member != null) {
 						System.out.println(member.showInfo());
@@ -50,7 +51,7 @@ public class MainExe {
 				id = scn.nextLine();
 				System.out.print("로그인 비밀번호>>");
 				pw = scn.nextLine();
-				result = mexe.login(id, pw);
+				result = MemberExe.login(id, pw);
 
 				if (result) {
 					boardMethod(id);

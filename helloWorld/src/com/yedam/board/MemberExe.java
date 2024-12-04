@@ -3,7 +3,8 @@ package com.yedam.board;
 //회원 가입, 회원정보 수정, 목록
 
 public class MemberExe {
-	private Member[] storege; // 필드
+	//인스턴스 vs 정적(static)필드,정적메소드 선언
+	private static Member[] storege; // 필드
 
 	public MemberExe() {
 		storege = new Member[10];
@@ -13,7 +14,7 @@ public class MemberExe {
 	}
 
 	// 1. 등록
-	public boolean addMember(Member member) {
+	public static boolean addMember(Member member) {
 		for (int i = 0; i < storege.length; i++) {
 			if (storege[i] == null) {
 				storege[i] = member;
@@ -24,13 +25,13 @@ public class MemberExe {
 	}
 
 	// 2. 목록
-	public Member[] memberList() {
+	public static Member[] memberList() {
 		return storege;
 	}
 
 	// 3. 로그인
 
-	public boolean login(String id, String pw) {
+	public static boolean login(String id, String pw) {
 		for (int i = 0; i < storege.length; i++) {
 			if (storege[i] != null) {
 				if (storege[i].getMemberId().equals(id)&& 
@@ -41,7 +42,7 @@ public class MemberExe {
 		}
 		return false;
 	}
-	public String getLoginName(String id) {
+	public static String getLoginName(String id) {
 		String logName = " ";
 		for (int i = 0; i < storege.length; i++) {
 			if(storege[i] != null) {
