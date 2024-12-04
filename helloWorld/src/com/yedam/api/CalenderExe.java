@@ -1,11 +1,16 @@
 package com.yedam.api;
 
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class CalenderExe {
 	public static void main(String[] args) {
-
-		createCalendar(2024,7);
+		Scanner scn = new Scanner(System.in);
+		System.out.printf("년");
+		int y = scn.nextInt();
+		System.out.printf("월");
+		int m = scn.nextInt();
+		createCalendar(y,m);
 	}
 	
 	static void createCalendar(int year,int month) {
