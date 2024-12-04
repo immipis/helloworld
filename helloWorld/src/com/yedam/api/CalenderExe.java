@@ -19,7 +19,7 @@ public class CalenderExe {
 		
 		int positionOfDay = cal.get(Calendar.DAY_OF_WEEK);
 		int lastDate = cal.getActualMaximum(Calendar.DATE);
-		
+		System.out.printf("---------%dY---%dM---------\n",year,month+1);
 		String[] days = {"Sun","Mon","Tue","Wed","Thr","Fri","Sat"};
 		for (String day : days) {
 			System.out.printf("%4s",day);
