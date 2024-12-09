@@ -1,8 +1,12 @@
 package com.yedam.jdbc.student;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Student {
 	private int engScore, mathScore; // employee_id => employeeId
-	private String stdNo, stdName, stdPhone, creationDate;
+	private String stdNo, stdName, stdPhone;
+	private Date creationDate;
 	
 	public Student() {
 
@@ -50,15 +54,17 @@ public class Student {
 	public void setStdPhone(String stdPhone) {
 		this.stdPhone = stdPhone;
 	}
-	public String getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(String creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 	
 	public String showInfo() {
-		return " " + stdNo + " " + stdName + " " + stdPhone+ " " + engScore+ " " + mathScore;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String asd = sdf.format(creationDate);
+		return " " + stdNo + " " + stdName + " " + stdPhone+ " " + engScore+ " " + mathScore+ " " + asd;
 	}
 	
 	public String showDetauill() {

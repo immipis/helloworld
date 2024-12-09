@@ -9,7 +9,29 @@ import java.util.ArrayList;
 //dao 입력 수정 삭제 조회(목록,단건)
 
 public class StudentDAO extends DAO {
-
+	
+	//login()=> 불린형 매개값 아이디 패스워드
+	public boolean login(String id, String pw) {
+		getConn();
+		String sql = "select * from tbl_member where member_id = ? and password = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
+	
+	
+	
 	public boolean deleteStudent(Student std) {
 		getConn();
 		String sql = "delete tbl_student where std_no=?";
@@ -73,22 +95,41 @@ public class StudentDAO extends DAO {
 		}
 		return false;
 	}
-
-	public ArrayList<Student> studentList() {
+	//검색 조건 학생이름,연락처,영어,수학 검색조건 + 정렬
+	public ArrayList<Student> studentList(Search search) {
 		getConn();
 		// 조회결과를 반환
 		ArrayList<Student> studList = new ArrayList<Student>();
 
-		String sql = "select * from tbl_student";
+		String sql = "select std_no, std_name, std_phone, eng_score, math_score, "
+//				+ "to_char(creation_date,'yyyy-mm-dd hh24:mm:ss') creation_date"
+				+ "creation_date "
+				+ "from tbl_student "
+				+ "where std_name like '%'||?||'%' "
+				+ "and std_phone like '%'||?||'%' "
+				+ "and eng_score > =? ";
+		
+				if (search.getOrderBy().equals("std_no")) {
+					sql += "order by std_no";
+				}
+				else if (search.getOrderBy().equals("std_name")) {
+					sql += "order by std_name";
+				}
+
+		
 		try {
 			psmt = conn.prepareStatement(sql); // 쿼리 실행, 결과 반환
+			psmt.setString(1,  search.getName());
+			psmt.setString(2,  search.getPhone());
+			psmt.setInt(3,  search.getEngScore());
+
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
 				Student stud = new Student(rs.getString("std_no"), rs.getString("std_name"), rs.getString("std_phone"));
 				stud.setEngScore(rs.getInt("eng_score"));
 				stud.setMathScore(rs.getInt("math_score"));
-
+				stud.setCreationDate(rs.getDate("creation_date"));
 				studList.add(stud);// 추가
 			}
 		} catch (SQLException e) {
@@ -127,5 +168,6 @@ public class StudentDAO extends DAO {
 
 		return null;
 	}
+
 
 }
