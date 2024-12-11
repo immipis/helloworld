@@ -18,7 +18,7 @@ public class BoardControl implements Control{
 			String bno = req.getParameter("board_No");
 			
 			BoardVO bvo = bdao.selectBoard(Integer.parseInt(bno));
-			req.setAttribute("BoardVO", bvo);
+			req.setAttribute("board", bvo);
 			req.getRequestDispatcher("html/board.jsp").forward(req, resp);
 		}
 		else if(req.getMethod().equals("POST")){

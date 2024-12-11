@@ -8,6 +8,9 @@ import com.yedam.common.BoardControl;
 import com.yedam.common.Control;
 import com.yedam.control.BoardFormControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.LoginControl;
+import com.yedam.control.LoginFormControl;
+import com.yedam.control.LogoutControl;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -29,11 +32,16 @@ public class FrontControl extends HttpServlet{
 		map.put("/boardList.do",new BoardListControl()); //목록
 		map.put("/board.do",new BoardControl()); //상세
 		
-		map.put("/boardForm.do",new BoardFormControl()); //등록
 		map.put("/board.do",new BoardControl()); 
 		
 		map.put("/modifyForm.do",new ModifyFormControl()); //등록
 		map.put("/modifyBoard.do",new ModifyBoardControl()); 
+		
+		map.put("/loginForm.do",new LoginFormControl()); //등록
+		map.put("/login.do",new LoginControl()); //등록
+		
+		map.put("/boardForm.do",new BoardFormControl()); //등록
+		map.put("/logout.do",new LogoutControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -15,11 +15,10 @@ public class ModifyFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BoardDAO bdao = new BoardDAO();
-		
-		String bno = req.getParameter("board_No");
+		String bno = req.getParameter("boardNum");
 		BoardVO bvo = bdao.selectBoard(Integer.parseInt(bno));
-		req.setAttribute("board", bvo);
-		req.getRequestDispatcher("html/modifyFrom.jsp").forward(req, resp);
+		req.setAttribute("modboard", bvo);
+		req.getRequestDispatcher("html/modifyForm.jsp").forward(req, resp);
 		
 	}
 

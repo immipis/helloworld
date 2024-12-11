@@ -4,13 +4,16 @@
 <jsp:include page="../includes/header.jsp"></jsp:include>
 
 <h3>상세보기</h3>
-
+	<%
+	BoardVO bvo = (BoardVO) request.getAttribute("board");
+	String logId = (String) session.getAttribute("logId");
+	%>
 <form action="modifyForm.do" method="post">
-	<%BoardVO bvo = (BoardVO) request.getAttribute("BoardVO");%>
+	<input  type ="hidden" name="boardNum" value="<%=bvo.getBoardNo()%>">	
 	<table class="table" >
 		<tr>
 			<th>글번호</th>
-			<td><input type="text" name="boardNum" value="<%=bvo.getBoardNo()%>"></td>
+			<td><%=bvo.getBoardNo()%></td>
 
 			<th>작성자</th>
 			<td><%=bvo.getWriter()%></td>
@@ -31,7 +34,13 @@
 		</tr>
 		<tr>
 			<td colspan ="4" align ="center">
-			<input type="submit" class="btn btn-warning" value="수정화면">
+			<% if(logId.equals(bvo.getWriter())){%>
+				<input type="submit" class="btn btn-warning" value="수정화면">
+				<%
+			}else{
+			%>
+			<input disabled type="submit" class="btn btn-danger" value="수정화면">
+			<%}%>
 			</td>
 		</tr>
 	</table>
