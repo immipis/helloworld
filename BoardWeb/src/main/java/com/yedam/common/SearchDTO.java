@@ -6,11 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
-@Data
-@AllArgsConstructor
+@Data //get set
+@AllArgsConstructor //생성자
 public class SearchDTO {
 	private int page;
 	private String searchCondition,keyword;
 	
-
 }

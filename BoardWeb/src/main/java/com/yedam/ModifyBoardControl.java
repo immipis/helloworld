@@ -2,13 +2,13 @@ package com.yedam;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.yedam.common.Control;
 import com.yedam.jdbc.BoardDAO;
 import com.yedam.vo.BoardVO;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class ModifyBoardControl implements Control {
 
@@ -22,7 +22,9 @@ public class ModifyBoardControl implements Control {
 		int bno =  Integer.parseInt(req.getParameter("boardNum"));
 		String btle = req.getParameter("boardTitle");
 		String bcon = req.getParameter("boardContent");
-
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
 		BoardVO bvo = new BoardVO();
 		
@@ -30,11 +32,10 @@ public class ModifyBoardControl implements Control {
 		bvo.setTitle(btle);
 		bvo.setContent(bcon);
 		
-		
 		if(bdao.updateBoard(bvo)) {
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page="+page+"&searchCondition="+sc+"&keyword="+kw);
 		}else {
-			req.getRequestDispatcher("html/modifyForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(req, resp);
 		}
 
 	}

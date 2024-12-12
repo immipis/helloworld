@@ -127,7 +127,8 @@ public class BoardDAO extends DAO {
 
 		return false;
 	}
-
+	
+	//파라메터
 	public List<BoardVO> boardList(SearchDTO search) {
 		getConn();
 		System.out.println("123123" + search);
