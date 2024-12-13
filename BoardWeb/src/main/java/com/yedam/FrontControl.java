@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.BoardControl;
 import com.yedam.common.Control;
+import com.yedam.control.AddReplyControl;
 import com.yedam.control.BoardFormControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
+import com.yedam.control.RemoveReplyControl;
+import com.yedam.control.ReplyListControl;
 
 //url 패턴에서 ~~~~*.do로 끝나는 건 전부 frontcontrol실행 
 
@@ -42,6 +45,10 @@ public class FrontControl extends HttpServlet{
 		
 		map.put("/boardForm.do",new BoardFormControl()); //등록
 		map.put("/logout.do",new LogoutControl());
+		
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

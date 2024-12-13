@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"></jsp:include>
-<%
-	String logId = (String) session.getAttribute("logId");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <h3>게시글 등록화면(boardForm.jsp)</h3>
-<form action="board.do" method="post">
+<form action="board.do" method="post" enctype="multipart/form-data">
 	<table class="table">
 		<tr>
 			<th>제목</th>
@@ -17,7 +16,12 @@
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" readonly name="writer" class="form-control" value=<%=logId %>></td>
+			<td><input type="text" readonly name="writer" class="form-control" value="${logId }"></td>
+		</tr>
+		<!-- 12.13  -->
+		<tr>
+			<th>이미지</th>
+			<td><input type="file" class="form-control"name="img"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

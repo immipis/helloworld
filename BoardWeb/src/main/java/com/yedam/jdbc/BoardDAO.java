@@ -93,7 +93,7 @@ public class BoardDAO extends DAO {
 				bVo.setViewCnt(rs.getInt("view_cnt"));
 				bVo.setCreatioDate(rs.getDate("creation_date"));
 				bVo.setUpdateDate(rs.getDate("update_date"));
-
+				bVo.setImg(rs.getString("img"));
 				return bVo;
 			}
 		} catch (SQLException e) {
@@ -106,14 +106,15 @@ public class BoardDAO extends DAO {
 
 	public boolean insertBoard(BoardVO board) {
 		getConn();
-		String sql = "insert into tbl_board " + "(board_no, title, content, writer) "
-				+ " values(board_seq2.nextval,?,?,?) ";
+		String sql = "insert into tbl_board " + "(board_no, title, content, writer,img) "
+				+ " values(board_seq2.nextval,?,?,?,?) ";
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getContent());
 			psmt.setString(3, board.getWriter());
+			psmt.setString(4, board.getImg());
 			int r = psmt.executeUpdate();
 			while (r > 0) {
 				return true;
