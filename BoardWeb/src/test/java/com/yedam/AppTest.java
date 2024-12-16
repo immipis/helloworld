@@ -1,32 +1,23 @@
 package com.yedam;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.jdbc.ReplyDAO;
-import com.yedam.vo.ReplyVO;
 
 public class AppTest {
 	public static void main(String[] args) {
-		ReplyVO rv = new ReplyVO();
-		rv.setBoardNo(1492);
-		rv.setReply("테스트 123");
-		rv.setReplyer("124124");
+		ReplyDAO rdao = new ReplyDAO();
+		List<Map<String,Object>> result = rdao.chartData();
 		
-		ReplyDAO rDao = new ReplyDAO();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(result);
 		
+		System.out.println(json);
 		
-		if (rDao.insertReply(rv)) {
-			System.out.println("성공");
-		}
-		else {
-			System.out.println("실패");
-		}
-		
-		
-		
-		
-		for(ReplyVO rVo : rDao.selectList(224)) {
-			System.out.println(rVo.toString());
-		}
+	
 	}
 }
