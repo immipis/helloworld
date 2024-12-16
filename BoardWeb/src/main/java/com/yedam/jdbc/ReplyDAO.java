@@ -37,17 +37,18 @@ public class ReplyDAO extends DAO {
 		getConn();
 		
 		try {
-			psmt = conn.prepareStatement("select tilte,start_date start, end_date end from tbl_events");
+			psmt = conn.prepareStatement("select title ,start_date, end_date from tbl_events");
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				Map<String, Object> map = new HashMap<>();
 				map.put("title", rs.getString("title"));
-				map.put("start", rs.getString("start"));
-				map.put("end", rs.getString("end"));
+				map.put("start", rs.getString("start_date"));
+				map.put("end", rs.getString("end_date"));
+				list.add(map);
 			}
 		}catch (SQLException e) {
-			
+			e.printStackTrace();
 		}finally {
 			disConnect();
 		}
