@@ -13,9 +13,9 @@ import com.yedam.vo.BoardVO;
 public class BoardDAO extends DAO {
 	// 상세정보
 
-	public String loginBoard(String uid, String pw) {
+	public String pList(String uid, String pw) {
 		getConn();
-		String sql = "select * from tbl_member where member_id = ? and password = ? ";
+		String sql = "select * from tbl_product p,tbl_member where m.member_id = ? and m.member_fv = p.category";
 
 		try {
 			psmt = conn.prepareStatement(sql);

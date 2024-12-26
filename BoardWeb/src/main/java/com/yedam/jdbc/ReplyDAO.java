@@ -31,6 +31,52 @@ public class ReplyDAO extends DAO {
 	String chartQuery ="select board_no || '번 글' as boardNo, count(1) as cnt from tbl_reply group by board_no ";
 	
 	//플캘린더
+	//일정삭제
+	public boolean deleteEvent(String title) {
+		getConn();
+		System.out.println(title);
+		String sql ="delete from tbl_events "
+				+ " where title = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,title);
+
+			int r =psmt.executeUpdate();
+			if(r>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
+	
+	
+	//일정등록
+	public boolean insertEvent(Map<String, String> map) {
+		getConn();
+		System.out.println(map);
+		String sql ="insert into tbl_events (title, start_date, end_date)"
+				  + " values(?,?,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,(String) map.get("title"));
+			psmt.setString(2, map.get("start"));
+			psmt.setString(3, map.get("end"));
+			
+			int r =psmt.executeUpdate();
+			if(r>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
 	
 	public List<Map<String, Object>> calendarData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BoardWeb/src/main/java"/>
+	<classpathentry kind="src" path="BoardWeb/src/test/java"/>
+	<classpathentry kind="src" path="helloWorld/src"/>
+	<classpathentry kind="src" path="T20241205/src"/>
+	<classpathentry kind="output" path="BoardWeb/target/classes"/>
+</classpath>

@@ -9,20 +9,14 @@
 <body>
 	<script>
 		//Asynchronous 자바스크립트 앤드 xml
-		fetch('replyList.do')
-			.then(function(result){
-				console.log(result);
-				return result.json();
-			})
-			.then(function(result){
-				console.log(result);
-				let p = document.createElement("p");
-				p.innerText="이름"+result.name+"나이"+result.age;
-				document.querySelector('body').appendChild(p);
-			})
-			.catch(function(err){
-				console.log(err);
-			})
+		console.log("1")
+      fetch('fullData.do')
+      	.then(result => result.json())
+		.then(result => {
+			console.log("2")
+		})
+		.catch(err => console.log(err));  
+		console.log("3")
 	</script>
 </body>
 </html>

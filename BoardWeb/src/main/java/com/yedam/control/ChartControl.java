@@ -12,6 +12,9 @@ public class ChartControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		
 		req.getRequestDispatcher("WEB-INF/html/chart.jsp").forward(req, resp);
 
 	}
